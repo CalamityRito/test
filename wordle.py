@@ -1,5 +1,5 @@
 import random
 def randomword():
-    listofwords=['angel','angle','begin','being','binge','stops','spots','posts','traps','strap','parts','cares','carts','space','scale','laces']
-    word=random.listofwords
+    listofwords=['ANGEL','ANGLE','BEGIN','BEING','BINGE','STOPS','SPOTS','POSTS','TRAPS','STRAP','PARTS','CARES','CARTS','SPACE','SCALE','LACES']
+    word=random.choice(listofwords)
     return(word)
