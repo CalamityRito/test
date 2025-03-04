@@ -1,6 +1,6 @@
 import random
 import time
-from colorama import Fore, Back, Style
+from colorama import Fore, Style
 print(Style.RESET_ALL)
 def slowprintnostop(string):
     for letter in string:
@@ -11,10 +11,11 @@ def slowprint(string):
         print(letter, end='',flush=True)
         time.sleep(0.2)
     print(flush=False)
-def randomword():
-    listofwords=['ANGEL','ANGLE','BEGIN','BEING','BINGE','STOPS','SPOTS','POSTS','TRAPS','STRAP','PARTS','CARES','CARTS','SPACE','SCALE','LACES','GREEN']
-    word=random.choice(listofwords)
-    return(word)
+def fastprint(string):
+    for letter in string:
+        print(letter,end='',flush=True)
+        time.sleep(0.075)
+    print(flush=False)
 def correctornot(word, guess):
     if word==guess:
         return(True)
@@ -27,7 +28,7 @@ def correctletter(letter,letter_2,word):
         return(Fore.YELLOW + letter)
     else:
         return(Fore.RED + letter)
-def roundwith4(number,wordlist,wordlist2,wordlist3,wordlist4,numberofguesses):
+def roundwith4(number,wordlist,wordlist2,wordlist3,wordlist4,numberofguesses,listofwords):
     print(Style.RESET_ALL)
     number=str(number)
     numberofguesses=str(numberofguesses)
@@ -36,7 +37,7 @@ def roundwith4(number,wordlist,wordlist2,wordlist3,wordlist4,numberofguesses):
     slowprint(list2)
     Guess=[]
     Guessword=''
-    while len(Guess)!=5:
+    while len(Guess)!=5 or Guessword not in listofwords:
         Guess=[]
         list1=['Guess #',numberofguesses]
         ' '.join(list1)
@@ -45,10 +46,9 @@ def roundwith4(number,wordlist,wordlist2,wordlist3,wordlist4,numberofguesses):
         Guessword=Guessword.upper()
         for _ in Guessword:
             Guess.append(_)
-        if len(Guess)!=5:
-            slowprint("Sorry, your answeris not valid, it must be 5 letters long")
-    
-    
+        if len(Guess)!=5 or Guessword not in listofwords:
+            fastprint("Sorry, your answer is not valid, it must be 5 letters long, and must be a real word.\nIf it is a real word, I am sorry, but it is not in the list of five letter words we have")
+
     listnumber=0
     for i in Guess:
         a=correctletter(i,wordlist[listnumber],wordlist)
@@ -83,7 +83,7 @@ def roundwith4(number,wordlist,wordlist2,wordlist3,wordlist4,numberofguesses):
         return('win 4')
     else:
         return('')
-def roundwith3(number,wordlist,wordlist2,wordlist3,numberofguesses):
+def roundwith3(number,wordlist,wordlist2,wordlist3,numberofguesses,listofwords):
     print(Style.RESET_ALL)
     number=str(number)
     numberofguesses=str(numberofguesses)
@@ -92,7 +92,7 @@ def roundwith3(number,wordlist,wordlist2,wordlist3,numberofguesses):
     slowprint(list2)
     Guess=[]
     Guessword=''
-    while len(Guess)!=5:
+    while len(Guess)!=5 or Guessword not in listofwords:
         Guess=[]
         list1=['Guess #',numberofguesses]
         ' '.join(list1)
@@ -101,8 +101,8 @@ def roundwith3(number,wordlist,wordlist2,wordlist3,numberofguesses):
         Guessword=Guessword.upper()
         for _ in Guessword:
             Guess.append(_)
-        if len(Guess)!=5:
-            slowprint("Sorry, your answeris not valid, it must be 5 letters long")
+        if len(Guess)!=5 or Guessword not in listofwords:
+            fastprint("Sorry, your answer is not valid, it must be 5 letters long, and be a real word\nIf it is a real word, I am sorry, but it is not in the list of five letter words we have")
     
     
     listnumber=0
@@ -131,7 +131,7 @@ def roundwith3(number,wordlist,wordlist2,wordlist3,numberofguesses):
         return('win3')
     else:
         return('')
-def roundwith2(number,wordlist,wordlist2,numberofguesses):
+def roundwith2(number,wordlist,wordlist2,numberofguesses,listofwords):
     print(Style.RESET_ALL)
     number=str(number)
     numberofguesses=str(numberofguesses)
@@ -140,7 +140,7 @@ def roundwith2(number,wordlist,wordlist2,numberofguesses):
     slowprint(list2)
     Guess=[]
     Guessword=''
-    while len(Guess)!=5:
+    while len(Guess)!=5 or Guessword not in listofwords:
         Guess=[]
         list1=['Guess #',numberofguesses]
         ' '.join(list1)
@@ -149,8 +149,8 @@ def roundwith2(number,wordlist,wordlist2,numberofguesses):
         Guessword=Guessword.upper()
         for _ in Guessword:
             Guess.append(_)
-        if len(Guess)!=5:
-            slowprint("Sorry, your answeris not valid, it must be 5 letters long")
+        if len(Guess)!=5 or Guessword not in listofwords:
+            fastprint("Sorry, your answer is not valid, it must be 5 letters long, and must be a real word\nIf it is a real word, I am sorry, but it is not in the list of five letter words we have")
     
     
     listnumber=0
@@ -171,7 +171,7 @@ def roundwith2(number,wordlist,wordlist2,numberofguesses):
     elif correctornot(wordlist2,Guess)==True:
         return('win 2')
     return('')
-def roundwith1(number,wordlist,numberofguesses):
+def roundwith1(number,wordlist,numberofguesses,listofwords):
     print(Style.RESET_ALL)
     number=str(number)
     numberofguesses=str(numberofguesses)
@@ -180,7 +180,7 @@ def roundwith1(number,wordlist,numberofguesses):
     slowprint(list2)
     Guess=[]
     Guessword=''
-    while len(Guess)!=5:
+    while len(Guess)!=5 or Guessword not in listofwords:
         Guess=[]
         list1=['Guess #',numberofguesses]
         ' '.join(list1)
@@ -189,8 +189,8 @@ def roundwith1(number,wordlist,numberofguesses):
         Guessword=Guessword.upper()
         for _ in Guessword:
             Guess.append(_)
-        if len(Guess)!=5:
-            slowprint("Sorry, your answeris not valid, it must be 5 letters long")
+        if len(Guess)!=5 or Guessword not in listofwords:
+            fastprint("Sorry, your answer is not valid, it must be 5 letters long,and must be a real word\nIf it is a real word, I am sorry, but it is not in the list of five letter words we have")
     
     
     listnumber=0
@@ -205,16 +205,26 @@ def roundwith1(number,wordlist,numberofguesses):
     else:
         return('')
 while True:  
-    word = randomword()
+    listofwords=['ANGEL','ANGLE','BEGIN','BEING','BINGE','STOPS','SPOTS','POSTS','TRAPS','STRAP','PARTS','CARES','CARTS','SPACE','SCALE','LACES','GREEN']
+    h=open('fiveLetterWords.txt')
+    for line in h:
+        line=line.upper()
+        linelist=[]
+        for _ in line:
+            linelist.append(_)
+        linelist.pop()
+        line=''.join(linelist)
+        listofwords.append(line)
+    word=random.choice(listofwords)
     word=word.upper()
     wordlist=[]
-    word2 = randomword()
+    word2=random.choice(listofwords)
     word2=word2.upper()
     wordlist2=[]
-    word3 = randomword()
+    word3=random.choice(listofwords)
     word3=word3.upper()
     wordlist3=[]
-    word4 = randomword()
+    word4=random.choice(listofwords)
     word4=word4.upper()
     wordlist4=[]
     for _ in word4:
@@ -225,7 +235,7 @@ while True:
         wordlist2.append(_)
     for _ in word:
         wordlist.append(_)
-    triesleft=9
+    triesleft=15
     numberofguesses=1
     a1=False
     a2=False
@@ -242,7 +252,7 @@ while True:
         if a4==False:
             notsolved.append('')
         if len(notsolved)==4:
-            winorlose=roundwith4(triesleft,wordlist,wordlist2,wordlist3,wordlist4,numberofguesses)
+            winorlose=roundwith4(triesleft,wordlist,wordlist2,wordlist3,wordlist4,numberofguesses,listofwords)
             if winorlose=='win 1':
                 a1=True
             elif winorlose=='win 2':
@@ -253,7 +263,7 @@ while True:
                 a4=True
         elif len(notsolved)==3:
             if a1==True:
-                winorlose=roundwith3(triesleft,wordlist2,wordlist3,wordlist4,numberofguesses)
+                winorlose=roundwith3(triesleft,wordlist2,wordlist3,wordlist4,numberofguesses,listofwords)
                 if winorlose=='win 1':
                     a2=True
                 if winorlose=='win 2':
@@ -261,7 +271,7 @@ while True:
                 if winorlose=='win 3':
                     a4=True
             elif a2==True:
-                winorlose=roundwith3(triesleft,wordlist,wordlist3,wordlist4,numberofguesses)
+                winorlose=roundwith3(triesleft,wordlist,wordlist3,wordlist4,numberofguesses,listofwords)
                 if winorlose=='win 1':
                     a1=True
                 if winorlose=='win 2':
@@ -269,7 +279,7 @@ while True:
                 if winorlose=='win 3':
                     a4=True
             elif a3==True:
-                winorlose=roundwith3(triesleft,wordlist,wordlist2,wordlist4,numberofguesses)
+                winorlose=roundwith3(triesleft,wordlist,wordlist2,wordlist4,numberofguesses,listofwords)
                 if winorlose=='win 1':
                     a1=True
                 if winorlose=='win 2':
@@ -277,7 +287,7 @@ while True:
                 if winorlose=='win 3':
                     a4=True
             elif a4==True:
-                winorlose=roundwith3(triesleft,wordlist,wordlist2,wordlist3,numberofguesses)
+                winorlose=roundwith3(triesleft,wordlist,wordlist2,wordlist3,numberofguesses,listofwords)
                 if winorlose=='win 1':
                     a1=True
                 if winorlose=='win 2':
@@ -286,50 +296,50 @@ while True:
                     a3=True
         elif len(notsolved)==2:
             if a1 == True and a2 == True:
-                winorlose=roundwith2(triesleft,wordlist3,wordlist4,numberofguesses) 
+                winorlose=roundwith2(triesleft,wordlist3,wordlist4,numberofguesses,listofwords) 
                 if winorlose=='win 1':
                     a3=True
                 if winorlose=='win 2':
                     a4=True
             elif a1 == True and a3 == True:
-                winorlose=roundwith2(triesleft,wordlist2,wordlist4,numberofguesses)
+                winorlose=roundwith2(triesleft,wordlist2,wordlist4,numberofguesses,listofwords)
                 if winorlose=='win 1':
                     a2=True
                 if winorlose=='win 2':
                     a4=True
             elif a1 == True and a4 == True:
-                winorlose=roundwith2(triesleft,wordlist2,wordlist3,numberofguesses)
+                winorlose=roundwith2(triesleft,wordlist2,wordlist3,numberofguesses,listofwords)
                 if winorlose=='win 1':
                     a2=True
                 elif winorlose=='win 2':
                     a3=True
             elif a2 == True and a3 == True:
-                winorlose=roundwith2(triesleft,wordlist,wordlist4,numberofguesses)
+                winorlose=roundwith2(triesleft,wordlist,wordlist4,numberofguesses,listofwords)
                 if winorlose=='win 1':
                     a1=True
                 elif winorlose=='win 2':
                     a4=True
             elif a2 == True and a4 == True:
-                winorlose=roundwith2(triesleft,wordlist,wordlist3,numberofguesses)
+                winorlose=roundwith2(triesleft,wordlist,wordlist3,numberofguesses,listofwords)
                 if winorlose=='win 1':
                     a1=True
                 elif winorlose=='win 2':
                     a3=True
             elif a3 == True and a4 == True:
-                winorlose=roundwith2(triesleft,wordlist,wordlist2,numberofguesses)
+                winorlose=roundwith2(triesleft,wordlist,wordlist2,numberofguesses,listofwords)
                 if winorlose=='win 1':
                     a1=True
                 elif winorlose=='win 2':
                     a2=True
         elif len(notsolved)==1:
             if a1==False:
-                winorlose=roundwith1(triesleft,wordlist,numberofguesses)
+                winorlose=roundwith1(triesleft,wordlist,numberofguesses,listofwords)
             elif a2==False:
-                winorlose=roundwith1(triesleft,wordlist2,numberofguesses)
+                winorlose=roundwith1(triesleft,wordlist2,numberofguesses,listofwords)
             elif a3==False:
-                winorlose=roundwith1(triesleft,wordlist3,numberofguesses)
+                winorlose=roundwith1(triesleft,wordlist3,numberofguesses,listofwords)
             elif a4== False:
-                winorlose=roundwith1(triesleft,wordlist4,numberofguesses)
+                winorlose=roundwith1(triesleft,wordlist4,numberofguesses,listofwords)
         while len(notsolved)!=0:
             notsolved.pop()
         triesleft=triesleft-1
