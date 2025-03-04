@@ -12,7 +12,7 @@ def slowprint(string):
         time.sleep(0.2)
     print(flush=False)
 def randomword():
-    listofwords=['ANGEL','ANGLE','BEGIN','BEING','BINGE','STOPS','SPOTS','POSTS','TRAPS','STRAP','PARTS','CARES','CARTS','SPACE','SCALE','LACES']
+    listofwords=['ANGEL','ANGLE','BEGIN','BEING','BINGE','STOPS','SPOTS','POSTS','TRAPS','STRAP','PARTS','CARES','CARTS','SPACE','SCALE','LACES','GREEN']
     word=random.choice(listofwords)
     return(word)
 def correctornot(word, guess):
@@ -335,13 +335,14 @@ while True:
         triesleft=triesleft-1
         numberofguesses=numberofguesses+1
         if winorlose=='win':
+            slowprint('Congratulations! You win!')
             g=0
             while g==0:
                 print(Style.RESET_ALL)
                 playagain=input('Play again?y/n')
                 if playagain=='y':
                     g=1
-                    triesleft=9
+                    triesleft=0
                     numberofguesses=0
                 elif playagain=='n':
                     quit()
@@ -354,7 +355,7 @@ while True:
                 playagain=input('Play again?y/n')
                 if playagain=='y':
                     g=1
-                    triesleft=9
+                    triesleft=0
                     numberofguesses=1
                 elif playagain=='n':
                     quit()
