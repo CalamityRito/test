@@ -5,7 +5,7 @@ while True:
         quit()
     try:
         i=open(h)
-        count=1
+        count=0
         sum=0
         for line in i:
             if line.startswith('X-DSPAM-Confidence:'):
