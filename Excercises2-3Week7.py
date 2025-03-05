@@ -5,7 +5,6 @@ while True:
         quit()
     try:
         i=open(h)
-        print('hh')
         count=1
         sum=0
         for line in i:
@@ -16,6 +15,6 @@ while True:
                 integer=float(integer)
                 sum=sum+integer
         sum=sum/count
-        print('The average value following "X-Dspam-Confidence" is:',sum)
+        print('The average value following "X-DSPAM-Confidence" is:',sum)
     except:
         print('That is not a valid answer')
