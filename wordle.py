@@ -1,6 +1,12 @@
 import random
 import time
 from colorama import Fore, Style
+try:
+    with open('highestwinstreak.txt','r')as h:
+        h.close()
+except:
+    with open('highestwinstreak.txt','w') as h:
+        h.close()
 print(Style.RESET_ALL)
 def slowprintnostop(string):
     for letter in string:
@@ -357,7 +363,16 @@ while True:
                     elif line=='lose':
                         number==0
                 h.close()
+            with open('highestwinstreak.txt','r') as h:
+                j=int(h)
+                h.close()
+            with open('highestwinstreak.txt','w') as h:
+                if j<number:
+                    h.write(number)
+                    j=number
+                h.close()
             streak=("Your current win streak is:",number)
+            highest=("Your all-time highest winstreak is;",j)
             slowprint(streak)
             g=0
             while g==0:
