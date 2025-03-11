@@ -235,7 +235,7 @@ while True:
         wordlist2.append(_)
     for _ in word:
         wordlist.append(_)
-    triesleft=15
+    triesleft=20
     numberofguesses=1
     a1=False
     a2=False
@@ -346,6 +346,19 @@ while True:
         numberofguesses=numberofguesses+1
         if winorlose=='win':
             slowprint('Congratulations! You win!')
+            with open('winstreak.txt','a') as h:
+                h.write('win')
+                h.close()
+            with open('winstreak.txt','r') as h:
+                number=0
+                for line in h:
+                    if line=='win':
+                        number+=1
+                    elif line=='lose':
+                        number==0
+                h.close()
+            streak=("Your current win streak is:",number)
+            slowprint(streak)
             g=0
             while g==0:
                 print(Style.RESET_ALL)
@@ -360,6 +373,8 @@ while True:
                     print('That is not a valid answer, please enter either y or n')
         elif winorlose=='lose':
             print('Better luck next time! The answer was,',word)
+            with open('winstreak.txt','a') as h:
+                h.write('lose')
             g=0
             while g==0:
                 playagain=input('Play again?y/n')
