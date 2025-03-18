@@ -8,6 +8,4 @@ with open('mbox-short.txt') as h:
         x=re.findall(y,line)
         if len(x) > 0:
             count+=1
-            print(x,count)
-count=int(count/2)
 print('mbox-short.txt had',count,'lines that matched',y)
