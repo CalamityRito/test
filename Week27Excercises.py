@@ -21,3 +21,5 @@ class Cat(Animal):
         print(self.att,'sucks')
 mary=Cat('Mary')
 mary.make_sound()
+hank=Dog('Hank is awesome')
+hank.make_sound()
