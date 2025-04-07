@@ -33,8 +33,56 @@ def format_phone_number(number):
     for item in list2:
         returner=returner+item
     return(returner)
-print(validate_name('Example Name'))
-print(validate_email('exampleemail%.700987@mastermail.com'))
-print(validate_phone_number('720-720-7207'))
-print(format_name('Z-e,* ^Ba(ld/w"i$n'))
-print(format_phone_number('&7*2&0^%-7()20$#-7:;;207"""'))
+class Contacts:
+    def __init__(self,name,phone_number,email):
+        self.name=name
+        self.phone_number=phone_number
+        self.email=email
+    def str(self):
+        print('Contact Name:',self.name,'\nContact Phone Number:',self.phone_number,'\nContact Email:',self.email)
+class Contactbook:
+    def __init__(self,contacts):
+        self.contacts=list(contacts)
+    def addcontact(self,contact):
+        self.contacts.append(contact)
+    def deletecontact(self,contact):
+        self.contacts.remove(contact)
+    def searchcontact(self,contact):
+        if contact in self.contacts:
+            return(True)
+        else:
+            return(False)
+    def displaycontacts(self):
+        for item in self.contacts:
+            print(item)
+phone=Contactbook([])
+while True:
+
+    h=input('Contact Book Menu: \n1. Add Contact\n2. Delete Contact\n3. Search Contact\n4. Display Contacts\n5. exit\n')
+    if h=='1':
+        j=input('What is the name of the contact you would like to add?')
+        phone.addcontact(j)
+        input(j+' added!')
+    elif h=='2':
+        j=input('What is the name of the contact you would like to delete?')
+        try:
+            phone.deletecontact(j)
+            input(j+' deleted!')
+        except:
+            print('Error. Invalid answer.')
+    elif h=='3':
+        j=input('What is the name of the contact you would like to search for?')
+        if bool(phone.searchcontact(j))==True:
+            input(j+' is in the contact book')
+        else:
+            input(j+' is not in the contact book')
+    elif h=='4':
+        phone.displaycontacts()
+        input()
+    elif h=='5':
+        print('See you again soon!')
+        quit()
+    else:
+        input('Error. that is not a valid answer. Please input a number from 1 to 5')
+
+
